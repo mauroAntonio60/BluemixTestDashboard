@@ -24,7 +24,7 @@ Login to the Bluemix console.
 Create the Java Liberty App
 Create the Compose MongoDb service and bind it with the Java Liberty App. 
 
-## 2. JVM System Properties for TLS/SSL connection to Compose MongoDB
+## 3. JVM System Properties for TLS/SSL connection to Compose MongoDB
 You might notice that Compose MongoDB connectivity is SSL enabled.
 Identify the Compose MongoDB connection URL and Certificate - find the link at the management console.
 
@@ -61,7 +61,7 @@ A typical application will also need to set several JVM system properties to ens
 - javax.net.ssl.keyStore The path to a key store containing the client’s TLS/SSL certificates
 - javax.net.ssl.keyStorePassword The password to access this key store
 
-## 3. Make the app locally using MAVEN
+## 4. Make the app locally using MAVEN
 
 Use Maven to install dependencies and build the .war file.
 
@@ -69,7 +69,7 @@ Use Maven to install dependencies and build the .war file.
   mvn clean install
   ```
 
-## 4. Deploy to Bluemix using command line
+## 5. Deploy to Bluemix using command line
 
 To deploy to Bluemix using command line update manifest.yml file. 
 The manifest.yml includes basic information about your app, such as the name, the location of your app, how much memory to allocate for each instance, and how many instances to create on startup. 
@@ -110,11 +110,11 @@ Push your application to Bluemix.
 
 This can take around two minutes. If there is an error in the deployment process you can use the command `cf logs <Your-App-Name> --recent` to troubleshoot.
 
-## 5. Access the test MongoDb application
+## 6. Access the test MongoDb application
 Enter the name of the application and add the API call for the test:
 https://test-java-mongodb.dys0.mybluemix.net/TestJavaMongo/test/mongo/all
 
 You should be seeing something like this:
-```json
+```javascript
 {service: 'mongodb', operations: [{type: 'create', response_time: 30, response_code: 200, desc: {'visitor id': '594ddeee34a639002645674d'}},{type: 'read', response_time: 25, response_code: 200, desc: {'visitor id': '594ddeee34a639002645674d'}},{type: 'update', response_time: 49, response_code: 200, desc: {'visitor id': '594ddeee34a639002645674d'}},{type: 'delete', response_time: 28, response_code: 200, desc: { 'deleted visitor id': '594ddeee34a639002645674d'}}], response_code: 200, desc:'operations implemented CRUD/CRUD'}
 ```
