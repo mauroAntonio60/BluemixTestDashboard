@@ -1,0 +1,9 @@
+---
+applications:
+ - name: TestAppJavaMongoDB	
+   random-route: true
+   path: target/TestJavaMongo.war
+   memory: 256M
+   instances: 1
+   name: test-java-mongodb
+   host: test-java-mongodb
