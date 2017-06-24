@@ -116,5 +116,11 @@ https://test-java-mongodb.dys0.mybluemix.net/TestJavaMongo/test/mongo/all
 
 You should be seeing something like this:
 ```javascript
-{service: 'mongodb', operations: [{type: 'create', response_time: 30, response_code: 200, desc: {'visitor id': '594ddeee34a639002645674d'}},{type: 'read', response_time: 25, response_code: 200, desc: {'visitor id': '594ddeee34a639002645674d'}},{type: 'update', response_time: 49, response_code: 200, desc: {'visitor id': '594ddeee34a639002645674d'}},{type: 'delete', response_time: 28, response_code: 200, desc: { 'deleted visitor id': '594ddeee34a639002645674d'}}], response_code: 200, desc:'operations implemented CRUD/CRUD'}
+{service: 'mongodb', operations: [
+  {type: 'create', response_time: 30, response_code: 200, desc: {'visitor id': '594ddeee34a639002645674d'}},
+  {type: 'read', response_time: 25, response_code: 200, desc: {'visitor id': '594ddeee34a639002645674d'}},
+  {type: 'update', response_time: 49, response_code: 200, desc: {'visitor id': '594ddeee34a639002645674d'}},
+  {type: 'delete', response_time: 28, response_code: 200, desc: { 'deleted visitor id': '594ddeee34a639002645674d'}}
+  ], response_code: 200, desc:'operations implemented CRUD/CRUD'
+}
 ```
