@@ -44,17 +44,19 @@ The trust store is typically created with the keytool command line program provi
 keytool -importcert -trustcacerts -file <path to certificate authority file>
             -keystore <path to trust store> -storepass <password>
             
-The command for our system is the following:
-create the mongoDBKey store: 
-**keytool -importcert -trustcacerts -file ./mongodbcert.crt -keystore ./mongoKeyStore -storepass aftereight**
+To make this work, we need to go back to the Compose console and get the SSL certificate (the certificate authority file) available on the Overview page - find it by clicking the button to reveal it and then copy it to a file. Let's call that file mongodbcert.crt for example.
+
+The next step is then quite easy:
+The command to create the mongoDBKey store for our system is the following:
+```keytool -importcert -trustcacerts -file ./mongodbcert.crt -keystore ./mongoKeyStore -storepass aftereight```
+
+When done place the mongoKeyStore at this location: ```GetStartedJavaMongoDb/src/main/resources/mongoKeyStore```
  
- Place the mongoKeyStore at this location: GetStartedJavaMongoDb/src/main/resources/mongoKeyStore
- 
- The document after the mvn install is going to be stored at this location: 
- wasdev.sample.store.MongoDbVisitorStore at the createClient method
- 
- - locally: /your path to the target: GetStartedJavaMongoDb/target/TestJavaMongo-1.0-SNAPSHOT/WEB-INF/classes/mongoKeyStore
- - on Bluemix (after cf push command) : /home/vcap/app/wlp/usr/servers/defaultServer/apps/myapp.war/WEB-INF/classes/mongoKeyStore
+Update the java class wasdev.sample.store.MongoDbVisitorStore at the createClient method if anything changes: 
+the document after the mvn install is going to be stored at this location: 
+
+ - locally: ```/your path to the target: GetStartedJavaMongoDb/target/TestJavaMongo-1.0-SNAPSHOT/WEB-INF/classes/mongoKeyStore```
+ - on Bluemix (after cf push command) : ```/home/vcap/app/wlp/usr/servers/defaultServer/apps/myapp.war/WEB-INF/classes/mongoKeyStore```
              
 A typical application will also need to set several JVM system properties to ensure that the client presents an TLS/SSL certificate to the MongoDB server:
 
@@ -124,3 +126,9 @@ You should be seeing something like this:
   ], response_code: 200, desc:'operations implemented CRUD/CRUD'
 }
 ```
+
+Further reading: 
+
+- https://www.compose.com/articles/how-to-connecting-to-compose-mongodb-with-java-and-ssl/
+- https://www.compose.com/articles/easier-java-connections-to-mongodb-at-compose-2/
+- http://www.journaldev.com/3963/mongodb-java-crud-example-tutorial
