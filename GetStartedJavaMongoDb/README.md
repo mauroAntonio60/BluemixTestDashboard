@@ -41,8 +41,7 @@ javax.net.ssl.trustStorePassword: The password to access this trust store
 
 The trust store is typically created with the keytool command line program provided as part of the JDK. For example:
 
-keytool -importcert -trustcacerts -file <path to certificate authority file>
-            -keystore <path to trust store> -storepass <password>
+```keytool -importcert -trustcacerts -file <path to certificate authority file>  -keystore <path to trust store> -storepass <password>```
             
 To make this work, we need to go back to the Compose console and get the SSL certificate (the certificate authority file) available on the Overview page - find it by clicking the button to reveal it and then copy it to a file. Let's call that file mongodbcert.crt for example.
 
