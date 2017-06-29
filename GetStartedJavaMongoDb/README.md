@@ -43,7 +43,18 @@ The trust store is typically created with the keytool command line program provi
 
 ```keytool -importcert -trustcacerts -file <path to certificate authority file>  -keystore <path to trust store> -storepass <password>```
             
-To make this work, we need to go back to the Compose console and get the SSL certificate (the certificate authority file) available on the Overview page - find it by clicking the button to reveal it and then copy it to a file. Let's call that file mongodbcert.crt for example.
+To make this work, we need to go back to the Compose console and get the SSL certificate (the certificate authority file) available on the Overview page - find it by clicking the button to reveal it and then copy it to a file - use ```cat > mongodbcert.crt``` and then paste the copied text:
+
+```
+-----BEGIN CERTIFICATE-----
+MIIDezCCAmOgAwIBAgIEWUkeGzANBgkqhkiG9w0BAQ0FADA/MT0wOwYDVQQDDDRt
+
+...skipping some lines...
+
+nnRSLAtnmc+bx02bK7IqWzEJIDWwr543HDhbqwMLYJbZukKThJ8hpzts3rw1uYND
+etzf6nD4gf9ovB/UpCF7cvJPpPN/YR9eLlYlJ51vkA==
+-----END CERTIFICATE-----
+```
 
 The next step is then quite easy:
 The command to create the mongoDBKey store for our system is the following:
