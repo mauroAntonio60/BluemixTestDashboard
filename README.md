@@ -16,7 +16,7 @@ This service enables you to test the apps deployed on the bluemix. They ping the
 
 ## JavaCloudant test application
 This test application tests connectivity to Cloudant NoSQLDb from Java platform.
-[Use this link to view the test java MongoDB repo](GetStartedJava)
+[Use this link to view the test java Cloudant NoSQLDb repo](GetStartedJava)
 
 
 ## JavaMongoDB test application
