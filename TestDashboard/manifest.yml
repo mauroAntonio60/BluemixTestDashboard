@@ -1,0 +1,9 @@
+---
+applications:
+ - name: TestAppDashboard
+   random-route: false
+   path: target/TestDashboard.war
+   memory: 256M
+   instances: 1
+   name: TestAppDashboard
+   host: TestAppDashboard
