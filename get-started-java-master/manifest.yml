@@ -1,0 +1,9 @@
+---
+applications:
+ - name: TestAppJava
+   random-route: true
+   path: target/GetStartedJava.war
+   memory: 256M
+   instances: 1
+   name: test-java-cloudant
+   host: test-java-cloudant
