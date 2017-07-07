@@ -1,0 +1,9 @@
+---
+applications:
+ - name: TestAppJavaMessageHub	
+   random-route: true
+   path: target/TestJavaMessageHub.war
+   memory: 256M
+   instances: 1
+   name: test-java-messagehub
+   host: test-java-messagehub
