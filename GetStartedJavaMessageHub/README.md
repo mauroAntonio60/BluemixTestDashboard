@@ -16,7 +16,7 @@ This application is based on the github.com/IBM-Bluemix/GetStartedJava.
 Now you're ready to start working with the app. Clone the repo and change the directory to where the sample app is located.
   ```bash
   git clone https://github.com/blumareks/BluemixTestDashboard
-  cd BluemixTestDashboard/GetStartedJavaMessageHubApp
+  cd BluemixTestDashboard/GetStartedJavaMessageHub
   ```
 
 ## 2. Create the necessary Bluemix App and Services
