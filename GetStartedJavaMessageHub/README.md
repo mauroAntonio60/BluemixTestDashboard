@@ -75,7 +75,7 @@ This can take around two minutes. If there is an error in the deployment process
 
 ## 5. Access the test MessageHub application
 Enter the name of the application and add the API call for the test:
-https://test-java-messagehub.dys0.mybluemix.net/TestJavaMessageHub/test/messagehub/all
+https://(link to your app on bluemix.mybluemix.net)/TestJavaMessageHub/test/messagehub/all
 
 You should be seeing something like this:
 ```javascript
