@@ -24,8 +24,6 @@ Login to the Bluemix console.
 Create the Java Liberty App
 Create the IBM Message Hub service and bind it with the Java Liberty App. 
 
-## 2. JVM System Properties for TLS/SSL connection to Compose MongoDB
-
 ## 3. Make the app locally using MAVEN
 
 Use Maven to install dependencies and build the .war file.
