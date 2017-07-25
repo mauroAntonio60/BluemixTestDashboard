@@ -15,13 +15,17 @@ This service enables you to test the apps deployed on the bluemix. They ping the
 [Use this link to view the test dashboard repo](TestDashboard)
 
 ## JavaCloudant test application
-This test application tests connectivity to Cloudant NoSQLDb from Java platform.
+This application tests connectivity to Cloudant NoSQLDb from Java platform.
 [Use this link to view the test java Cloudant NoSQLDb repo](get-started-java-master)
 
 
 ## JavaMongoDB test application
-This test application tests connectivity to MongoDB from Java platform.
+This test application checks connectivity to MongoDB from Java platform.
 [Use this link to view the test java MongoDB repo](GetStartedJavaMongoDb)
+
+## Java Message Hub test application
+This test application checks producing and consuming of the messages with IBM Message Hub.
+[Use this link to view the test app for Message Hub](GetStartedJavaMessageHub)
 
 
 
