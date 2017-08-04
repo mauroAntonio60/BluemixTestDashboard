@@ -27,5 +27,7 @@ This test application checks connectivity to MongoDB from Java platform.
 This test application checks producing and consuming of the messages with IBM Message Hub.
 [Use this link to view the test app for Message Hub](GetStartedJavaMessageHub)
 
-
+## Java Compose for ElasticSearch test application
+This test application checks indexing and searching thru the documents with Compose for ElasticSearch.
+[Use this link to view the test app for Compose for ElasticSearch](GetStartedJavaComposeElasticSearch)
 
