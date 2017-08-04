@@ -1,0 +1,9 @@
+---
+applications:
+ - name: testjava-elasticsearch
+   randome-route: true
+   path: target/TestJavaComposeElasticSearch.war
+   memory: 256M
+   instances: 1
+   name: testjava-elasticsearch
+   host: testjava-elasticsearch
