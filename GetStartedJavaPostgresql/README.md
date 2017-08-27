@@ -80,5 +80,10 @@ https://test-java-postgresql.dys0.mybluemix.net/test/postgresql/all
 
 You should be seeing something like this:
 ```javascript
-{service: 'postgresql', operations: [{type: 'create', response_time: 242, response_code: 200, desc: {'visitor': '1503872804808,test case: 1503872804808'}},{type: 'read', response_time: 121, response_code: 200, desc: {'visitor id': '23'}},{type: 'update', response_time: 244, response_code: 200, desc: {'visitor': '23,test case2: 1503872805176'}},{type: 'delete', response_time: 121, response_code: 200, desc: { 'deleted visitor id': '23'}}], response_code: 200, desc:'operations implemented CRUD/CRUD'}
+{service: 'postgresql', operations: [
+{type: 'create', response_time: 242, response_code: 200, desc: {'visitor': '1503872804808,test case: 1503872804808'}},
+{type: 'read', response_time: 121, response_code: 200, desc: {'visitor id': '23'}},
+{type: 'update', response_time: 244, response_code: 200, desc: {'visitor': '23,test case2: 1503872805176'}},
+{type: 'delete', response_time: 121, response_code: 200, desc: { 'deleted visitor id': '23'}}
+], response_code: 200, desc:'operations implemented CRUD/CRUD'}
 ```
