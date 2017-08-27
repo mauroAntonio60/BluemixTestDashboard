@@ -31,3 +31,6 @@ This test application checks producing and consuming of the messages with IBM Me
 This test application checks indexing and searching thru the documents with Compose for ElasticSearch.
 [Use this link to view the test app for Compose for ElasticSearch](GetStartedJavaComposeElasticSearch)
 
+## Java Compose for Postgresql test application
+This test application checks CRUD operations for Compose for PostgreSQL with Java on Bluemix.
+[Use this link to view the test app for Compose for PostgreSQL](GetStartedJavaPostgresql)
