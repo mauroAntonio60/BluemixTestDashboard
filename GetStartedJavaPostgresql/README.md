@@ -10,6 +10,7 @@ This application is designed to undertake CRUD operations on Compose for Postgre
 You'll need [Git](https://git-scm.com/downloads), [Cloud Foundry CLI](https://github.com/cloudfoundry/cli#downloads), [Maven](https://maven.apache.org/download.cgi) and a Dedicated Bluemix - also you might want to test the environment with Public Bluemix: [Bluemix account](https://console.ng.bluemix.net/registration/).
 
 This application is based on the github.com/IBM-Bluemix/GetStartedJava.
+In addition for SQL and Java drivers I used: https://www.tutorialspoint.com/postgresql/postgresql_java.htm
 
 ## 1. Clone the sample app
 
@@ -59,6 +60,7 @@ Replace the *API-endpoint* in the command with an API endpoint from the followin
 * https://api.ng.bluemix.net # US South
 * https://api.eu-gb.bluemix.net # United Kingdom
 * https://api.au-syd.bluemix.net # Sydney
+* https://api.eu-de.mybluemix.net # Germany
 
 Login to your Bluemix account
   ```
@@ -72,7 +74,7 @@ Push your application to Bluemix.
 
 This can take around two minutes. If there is an error in the deployment process you can use the command `cf logs <Your-App-Name> --recent` to troubleshoot.
 
-## 5. Access the test MongoDb application
+## 5. Access the test PostgreSQL application
 Enter the name of the application and add the API call for the test:
 https://test-java-postgresql.dys0.mybluemix.net/test/postgresql/all
 
