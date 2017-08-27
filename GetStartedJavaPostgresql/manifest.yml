@@ -1,0 +1,9 @@
+---
+applications:
+ - name: TestAppJavaPostgresql	
+   random-route: true
+   path: target/TestJavaPostgresql.war
+   memory: 256M
+   instances: 1
+   name: test-java-postgresql
+   host: test-java-postgresql
