@@ -1,0 +1,9 @@
+---
+applications:
+ - name: TestAppJavaRedis	
+   random-route: true
+   path: target/TestJavaRedis.war
+   memory: 256M
+   instances: 1
+   name: test-java-redis
+   host: test-java-redis
