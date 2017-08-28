@@ -45,7 +45,7 @@ The manifest.yml is provided in the sample.
 applications:
  - name: TestAppJavaRedis	
    random-route: true
-   path: target/TestJavaMongo.war
+   path: target/TestJavaRedis.war
    memory: 256M
    instances: 1
    name: test-java-redis
@@ -77,7 +77,7 @@ This can take around two minutes. If there is an error in the deployment process
 
 ## 5. Access the test Redis application
 Enter the name of the application and add the API call for the test:
-https://test-java-Redis.dys0.mybluemix.net/TestJavaMongo/test/mongo/all
+https://test-java-Redis.dys0.mybluemix.net/test/redis/all
 
 You should be seeing something like this:
 ```javascript
