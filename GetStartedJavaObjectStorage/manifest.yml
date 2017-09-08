@@ -1,0 +1,9 @@
+---
+applications:
+ - name: TestAppJavaObjectStorage	
+   random-route: true
+   path: target/TestJavaObjectStorage.war
+   memory: 256M
+   instances: 1
+   name: 2017-test-java-objectstorage
+   host: 2017-test-java-objectstorage
