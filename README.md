@@ -38,3 +38,8 @@ This test application checks "Create Read Push Pop Sets" operations for Compose 
 ## Java Compose for Postgresql test application
 This test application checks CRUD operations for Compose for PostgreSQL with Java on Bluemix.
 [Use this link to view the test app for Compose for PostgreSQL](GetStartedJavaPostgresql)
+
+
+## Java Object Storage test application
+This test application checks CRD operations for Object Storage with Java on Bluemix.
+[Use this link to view the test app for Object Storage](GetStartedJavaObjectStorage)
