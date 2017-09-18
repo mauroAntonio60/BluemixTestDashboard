@@ -42,72 +42,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<%
-	int NUMBER_OF_DISPLAYED_RESULTS = 12;
-	int TRESHOLD_TO_YELLOW = 1000;
-	String foundRefreshTime;
-	int refreshRate = -1;
 
-	DashboardData dashboardData = DashboardData.getInstance();
-	RefreshData refreshData = RefreshData.getInstance();
 
-	foundRefreshTime = request.getParameter("time");
-	if ((foundRefreshTime != null) && (!foundRefreshTime.isEmpty()) && (foundRefreshTime != "")) {
-		System.out.println("found time: " + foundRefreshTime);
-		//setting refresh in the background
-		refreshRate = Integer.parseInt(foundRefreshTime);
-
-		System.out.println("setting refreshing for " + refreshRate + "min");
-
-		//TODO: CR 0.4 get refresh schedule from DB
-
-		SchedulerSettingsStore schedulerStore = SchedulerSettingsStoreFactory.getInstance();
-		if (schedulerStore == null) {
-			System.out.println("no store defined!");
-%>
-
-No connection to the DB - refresh rate set only temporarily in memory
-
-<%
-		} else {
-		//TODO: CR 0.4 get refresh schedule from DB
-
-			SchedulerSettings schedulerSettings;
-			Collection<SchedulerSettings> col = schedulerStore.getAll();
-			if (col != null && col.size() > 0) {
-				System.out.println("Found the scheduler in the db!");
-				//get the first one
-				schedulerSettings = (SchedulerSettings) (col.toArray())[0];
-				schedulerSettings.setRefreshTime(refreshRate);
-				schedulerStore.update(schedulerSettings.get_id(), schedulerSettings);
-				System.out.println("updated the scheduler " + schedulerSettings.get_id() + " in the db with refresh rate: " + refreshRate);
-
-			} else {
-				System.out.println("There are no settings in the DB - creating a scheduler record");
-				schedulerSettings = new SchedulerSettings();
-
-				schedulerSettings.setRefreshTime(refreshRate);
-				schedulerStore.persist(schedulerSettings);
-				System.out.println("persisted the scheduler in the db with refresh rate: " + refreshRate);
-
-			}
-		}
-
-		refreshData.isRefreshing = true;
-		dashboardData.setRefreshRate(Integer.parseInt(foundRefreshTime) * 60);
-		refreshData.refreshingData();
-
-		// TODO: clear the time parameter 
-		response.sendRedirect("index.jsp");
-
-	} else {
-		//foundRefreshTime = "60";
-	}
-%>
+<%@ taglib uri="https://bluemix.net/tlds/bluedashtags" prefix="refreshT"%>
+<refreshT:refreshTime/>
 
 <meta http-equiv="refresh" content="60" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Automatic Dashboard rev 1.0</title>
+<title>Automatic Dashboard rev 1.1</title>
 <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
@@ -129,7 +71,13 @@ No connection to the DB - refresh rate set only temporarily in memory
 
 
 	<%
-		UrlStatusPersistedStore store = UrlStatusPersistedStoreFactory.getInstance();
+	//TODO: CR 1.1 custom tag to replace the code	
+	int NUMBER_OF_DISPLAYED_RESULTS = 12;
+	int TRESHOLD_TO_YELLOW = 1000;
+
+	DashboardData dashboardData = DashboardData.getInstance();
+	RefreshData refreshData = RefreshData.getInstance();
+	UrlStatusPersistedStore store = UrlStatusPersistedStoreFactory.getInstance();
 
 		if (store == null) {
 			System.out.println("no store defined!");
@@ -283,6 +231,7 @@ No connection to the DB - refresh rate set only temporarily in memory
 				}
 			}
 			System.out.println();
+			//TODO: CR 1.1 custom table builder tag --end
 		%>
 	</table>
 

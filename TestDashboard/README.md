@@ -137,3 +137,9 @@ We're now going to update your local code to point to this database. We'll store
   Make any changes you want and re-deploy to Bluemix!
 
   Please follow me on Twitter: @blumareks
+  
+  ## Changes in the current version
+  
+  ### 1.1 added custom tags
+  Following the request to clear the index.jsp page from unnecessary the custom tag RefreshTimeTag has been created 
+  (affected files: pom.xml, web.xml, index.jsp, refreshTime.tld, RefreshTimeTag.java) 

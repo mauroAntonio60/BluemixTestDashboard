@@ -12,5 +12,11 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
+<jsp-config>
+  <taglib>
+	<taglib-uri>https://bluemix.net/tlds/bluedashtags</taglib-uri>
+  	<taglib-location>/WEB-INF/refreshTime.tld</taglib-location>
+  </taglib>
+  </jsp-config>
 
 </web-app>

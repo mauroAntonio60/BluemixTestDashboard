@@ -33,6 +33,12 @@
 				<artifactId>geronimo-servlet_3.0_spec</artifactId>
 				<version>1.0</version>
 			</dependency>
+			<dependency>
+				<groupId>org.apache.geronimo.specs</groupId>
+				<artifactId>geronimo-jsp_2.2_spec</artifactId>
+				<version>1.2</version>
+				<scope>provided</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -41,6 +47,12 @@
 			<groupId>org.apache.geronimo.specs</groupId>
 			<artifactId>geronimo-servlet_3.0_spec</artifactId>
 			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.geronimo.specs</groupId>
+			<artifactId>geronimo-jsp_2.2_spec</artifactId>
+			<version>1.2</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
