@@ -17,6 +17,10 @@
 	<taglib-uri>https://bluemix.net/tlds/bluedashtags</taglib-uri>
   	<taglib-location>/WEB-INF/refreshTime.tld</taglib-location>
   </taglib>
+  <taglib>
+	<taglib-uri>https://bluemix.net/tlds/bluedashtags/presentDashboard</taglib-uri>
+  	<taglib-location>/WEB-INF/presentDashboard.tld</taglib-location>
+  </taglib>
   </jsp-config>
 
 </web-app>
