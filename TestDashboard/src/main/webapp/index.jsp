@@ -2,43 +2,7 @@
 <%@page import="com.ibm.dashboard.store.UrlStatusPersisted"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page
-	import="
-    java.util.ArrayList,
-    java.util.Collection,
-    java.text.SimpleDateFormat,
-    java.util.Date,
-    java.lang.Integer,
-	java.util.List,
-	java.io.File,
-	javax.net.ssl.SSLContext,
-	org.apache.http.ssl.SSLContextBuilder,
-	org.apache.http.conn.ssl.NoopHostnameVerifier,
-	org.apache.http.conn.ssl.SSLConnectionSocketFactory,
-	org.apache.http.conn.ssl.TrustSelfSignedStrategy,
-	org.apache.http.ssl.SSLContexts,
-	java.security.KeyStore,
-	java.io.FileInputStream,
-	java.text.DateFormat,
-	java.util.TimeZone,
-	
-    org.apache.http.HttpEntity,
-    org.apache.http.NameValuePair,
-    org.apache.http.client.entity.UrlEncodedFormEntity,
-    org.apache.http.client.methods.CloseableHttpResponse,
-    org.apache.http.client.methods.HttpGet,
-    org.apache.http.client.methods.HttpPost,
-    org.apache.http.impl.client.CloseableHttpClient,
-    org.apache.http.impl.client.HttpClients,
-    org.apache.http.message.BasicNameValuePair,
-    org.apache.http.util.EntityUtils,
-    org.apache.http.entity.StringEntity,
-    org.apache.http.entity.ContentType,
-    org.apache.http.Consts,
-    
-    com.ibm.dashboard.*,
-    com.ibm.dashboard.store.*,
-    com.ibm.dashboard.singleton.*"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
