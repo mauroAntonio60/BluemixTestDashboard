@@ -24,13 +24,12 @@ Login to the Bluemix console.
 Create the Java Liberty App
 Create the Compose MySQL service and bind it with the Java Liberty App. 
 
-## 2. TODO: to be added - JVM System Properties for TLS/SSL connection to Compose MySQL
-_At the moment app doesn't use SSL and PKI. The following actions might be taken to implement - treat them as direction, not specific instructions:_
-
-### You might want to have that Compose MySQL connectivity SSL enabled. ###
+## 2. JVM System Properties for TLS/SSL connection to Compose MySQL
 Identify the Compose MySQL connection URL and Certificate - find the link at the management console.
 
-Therefore our application will need to set several JVM system properties to ensure that the client is able to validate the TLS/SSL certificate presented by the server:
+Therefore our application will need to set several JVM system properties to ensure that the client is able to validate the TLS/SSL certificate presented by the server.
+
+Copy the certificate between lines: ```-----BEGIN CERTIFICATE-----``` and ```-----END CERTIFICATE-----``` into the file mysqlcert.crt (I usually use ```cat > mysqlcert.crt``` and control-C to exit editing).
 
 javax.net.ssl.trustStore: The path to a trust store containing the certificate of the signing authority
 javax.net.ssl.trustStorePassword: The password to access this trust store
@@ -44,12 +43,12 @@ The command for our system is the following:
 create the MySQLKey store: 
 **keytool -importcert -trustcacerts -file ./mysqlcert.crt -keystore ./mysqlKeyStore -storepass aftereight**
  
- Place the mongoKeyStore at this location: GetStartedJavaMySQL/src/main/resources/mysqlKeyStore
+ Place the mysqlKeyStore at this location: GetStartedJavaMySQL/src/main/resources/mysqlKeyStore
  
  The document after the mvn install is going to be stored at this location: 
  wasdev.sample.store.MySQLVisitorStore at the createClient method
  
- - locally: /your path to the target: GetStartedJavaMySQL/target/TestJavaMongo-1.0-SNAPSHOT/WEB-INF/classes/mongoKeyStore
+ - locally: /your path to the target: GetStartedJavaMySQL/target/TestJavaMySQL-1.0-SNAPSHOT/WEB-INF/classes/mysqlKeyStore
  - on Bluemix (after cf push command) : /home/vcap/app/wlp/usr/servers/defaultServer/apps/myapp.war/WEB-INF/classes/mysqlKeyStore
              
 A typical application will also need to set several JVM system properties to ensure that the client presents an TLS/SSL certificate to the MySQL server:
