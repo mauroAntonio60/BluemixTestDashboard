@@ -1,0 +1,9 @@
+---
+applications:
+ - name: TestAppJavaMysql	
+   random-route: true
+   path: target/TestJavaMysql.war
+   memory: 256M
+   instances: 1
+   name: 2017-test-java-mysql
+   host: 2017-test-java-mysql
