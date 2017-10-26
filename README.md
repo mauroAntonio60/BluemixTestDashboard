@@ -43,3 +43,9 @@ This test application checks CRUD operations for Compose for PostgreSQL with Jav
 ## Java Object Storage test application
 This test application checks CRD operations for Object Storage with Java on Bluemix.
 [Use this link to view the test app for Object Storage](GetStartedJavaObjectStorage)
+
+
+
+## Java Compose for MySQL test application
+This test application checks CRUD operations for Compose for MySql with Java on Bluemix.
+[Use this link to view the test app for MySql](GetStartedJavaMySQL)
