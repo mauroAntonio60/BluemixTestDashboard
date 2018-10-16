@@ -1,4 +1,4 @@
-# Message Hub (Kafka as a Service on Bluemix) Java test app
+# IBM Event Streams (Kafka as a Service on IBM Cloud) Java test app
 This application is designed to undertake Create Topic, Produce Message, Consume Message operations on IBM Message-Hub app based on the Dedicated Bluemix (public Bluemix is also considered).
 
 1. Please follow the below steps to deploy the app.
