@@ -22,6 +22,7 @@ This application tests connectivity to Cloudant NoSQLDb from Java platform.
 ## JavaMongoDB test application
 This test application checks connectivity to MongoDB from Java platform.
 The provided java sample has been updated to work on IBM Cloud with Liberty and Mongodb services.
+Try it at https://mauro-test-java-mongodb.eu-de.mybluemix.net/TestJavaMongo/test/mongo/all
 [Use this link to view the test java MongoDB repo](GetStartedJavaMongoDb)
 
 ## Java Message Hub test application
