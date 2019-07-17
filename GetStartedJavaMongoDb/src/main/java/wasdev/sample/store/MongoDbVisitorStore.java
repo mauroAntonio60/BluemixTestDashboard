@@ -13,6 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
+ /* mongodb VCAP credentials management patched by mauro antonio giacomello 2019-07-17 */
+ *******************************************************************************/
 package wasdev.sample.store;
 
 import java.io.IOException;
@@ -32,6 +34,7 @@ import com.mongodb.client.MongoIterable;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.result.DeleteResult;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonElement;
 
 import wasdev.sample.Visitor;
 
@@ -40,20 +43,24 @@ public class MongoDbVisitorStore implements VisitorStore {
 	private MongoDatabase db = null;
 	private static final String databaseName = "test-java-mongodb";
 	private MongoCollection<Document> collection; // "java-test"
-
+		
 	public MongoDbVisitorStore() {
+		System.out.println("xyz token 02");
 		MongoClient client = createClient();
 		if (client != null) {
+			System.out.println("xyz token 03");
 			db = client.getDatabase(databaseName);
 			if (db == null) {
-				System.out.println("database null - creating " + databaseName);
+				System.out.println("xyz database null - creating " + databaseName);
 				collection = db.getCollection("java-test");
 				// db = client.add db
 			}
 		}
+		System.out.println("xyz token 04");
 	}
 
 	public MongoDatabase getDB() {
+		System.out.println("xyz token 05");
 		return db;
 	}
 
@@ -78,25 +85,46 @@ public class MongoDbVisitorStore implements VisitorStore {
 		// System.setProperty("javax.net.ssl.trustStore",
 		// "/Users/mareksadowski/Documents/2018-ibm/201805-blogging/BluemixTestDashboard/GetStartedJavaMongoDb/target/TestJavaMongo-1.0-SNAPSHOT/WEB-INF/classes/mongoKeyStore");
 		
-		System.setProperty("javax.net.ssl.trustStorePassword", "aftereight");
-		// System.out.println("trustStore location: " +
-		// System.getProperty("javax.net.ssl.trustStore"));
-		// System.out.println("trustStorePassword: " +
-		// System.getProperty("javax.net.ssl.trustStorePassword"));
+		System.setProperty("javax.net.ssl.trustStorePassword", "tokenant");
+		/**/ System.out.println("xyz trustStore location: " +
+		/**/ System.getProperty("javax.net.ssl.trustStore"));
+		/**/ System.out.println("xyz trustStorePassword: " +
+		/**/ System.getProperty("javax.net.ssl.trustStorePassword"));
 		String url = "";
 
 		if (System.getenv("VCAP_SERVICES") != null) {
+			
+			System.out.println("xyz token 06 VCAP_SERVICES != null");
+			
 			// When running in Bluemix, the VCAP_SERVICES env var will have the credentials
 			// for all bound/connected services
 			// Parse the VCAP JSON structure looking for mongodb.
 			JsonObject mongoCredentials = VCAPHelper.getCloudCredentials("mongodb");
 			if (mongoCredentials == null) {
-				System.out.println("No MongoDB database service bound to this application");
+				System.out.println("xyz No MongoDB database service bound to this application");
 				return null;
 			}
+			System.out.println("xyz token 07 mongo credentials");
 			System.out.println(mongoCredentials);
-			url = mongoCredentials.get("uri").getAsString();
-			System.out.println("got mongodb credentials from VCAP: " + url);
+			
+			//url = mongoCredentials.get("uri").getAsString();
+			
+			JsonElement mongoconn = mongoCredentials.get("connection");
+			System.out.println("xyz mongoconn: " + mongoconn);
+			
+			JsonObject  generatedObj1 = mongoconn.getAsJsonObject();
+			System.out.println("xyz generatedObj1: " + generatedObj1);
+			
+			JsonElement mongomongodb = generatedObj1.get("mongodb");
+			System.out.println("xyz mongomongodb: " + mongomongodb);
+			
+			JsonObject  generatedObj2 = mongomongodb.getAsJsonObject();						
+			System.out.println("xyz generatedObj2: " + generatedObj2);
+			
+			url = generatedObj2.get("composed").getAsString();
+			System.out.println("xyz url: " + url);
+			
+			System.out.println("xyz got mongodb credentials from VCAP: " + url);
 
 			// url manipulation - getting a User, the password, a link
 			String url1 = url.substring(10);//removing "mongodb://"
@@ -110,9 +138,11 @@ public class MongoDbVisitorStore implements VisitorStore {
 			String password = url1.substring(indexEndUser + 1, indexEndPassword);
 			String urlHost = url1.substring(indexEndPassword + 1, indexEndAddress);
 
-			//System.out.println(user);
-			//System.out.println(password);
+			/**/System.out.println(user);
+			/**/System.out.println(password);
 			System.out.println(urlHost);
+			
+			System.out.println("xyz token 01");
 
 			// TODO: Add SSL
 			/**
@@ -127,24 +157,24 @@ public class MongoDbVisitorStore implements VisitorStore {
 					+ user + ":" + password + "@"
 					+ urlHost + "?authSource=admin&ssl=true";
 
-			System.out.println("Connecting database...");
+			System.out.println("xyz Connecting database...");
 			
 		} else {
-			System.out.println("Running locally. Looking for credentials in mongodb.properties");
+			System.out.println("xyz Running locally. Looking for credentials in mongodb.properties");
 			url = VCAPHelper.getLocalProperties("mongo.properties").getProperty("mongo_url");
 			if (url == null || url.length() == 0) {
-				System.out.println("To use a database, set the Mongo url in src/main/resources/mongo.properties");
+				System.out.println("xyz To use a database, set the Mongo url in src/main/resources/mongo.properties");
 				return null;
 			}
 		}
 
 		try {
-			System.out.println("Connecting to MongoDb - url: ... " + url);
+			System.out.println("xyz Connecting to MongoDb - url: ... " + url);
 			MongoClient client = new MongoClient(new MongoClientURI(url));
-			System.out.println("Connected to MongoDb ");
+			System.out.println("xyz Connected to MongoDb ");
 			return client;
 		} catch (Exception e) {
-			System.out.println("Unable to connect to database");
+			System.out.println("xyz Unable to connect to database");
 			e.printStackTrace();
 			return null;
 		}
@@ -161,14 +191,14 @@ public class MongoDbVisitorStore implements VisitorStore {
 		List<Visitor> docs = new ArrayList<Visitor>();
 		try {
 			MongoIterable<String> listDatabaseNames = createClient().listDatabaseNames();
-			System.out.println("listed databeses " + listDatabaseNames);
+			System.out.println("xyz listed databeses " + listDatabaseNames);
 			Document myDoc;
 			Visitor newVisitor = new Visitor();
 			MongoCursor<Document> cursor = collection.find().iterator();
 			try {
 				while (cursor.hasNext()) {
 					myDoc = cursor.next();
-					System.out.println("READ: current id: " + myDoc.getObjectId("_id").toString());
+					System.out.println("xyz READ: current id: " + myDoc.getObjectId("_id").toString());
 					newVisitor.set_id(myDoc.getObjectId("_id").toString());
 					newVisitor.setName(myDoc.getString("name"));
 					docs.add(newVisitor);
@@ -192,20 +222,20 @@ public class MongoDbVisitorStore implements VisitorStore {
 	public Visitor get(String name) {
 
 		collection = db.getCollection("java-test");
-		// System.out.println("number of documents in the collection : " +
-		// collection.count());
-		// System.out.println("READ: previous name: " + name);
+		/**/ System.out.println("xyz number of documents in the collection : " +
+		/**/ collection.count());
+		/**/ System.out.println("xyz READ: previous name: " + name);
 		// TODO: find by _id
 		Document myDoc = collection.find(com.mongodb.client.model.Filters.eq("name", name)).first();
 		// TODO: find faster method to getting object id of an inserted object
-		// System.out.println(myDoc.toJson());
+		/**/ System.out.println(myDoc.toJson());
 		Visitor newVisitor = new Visitor();
-		// System.out.println("READ: current id: " +
-		// myDoc.getObjectId("_id").toString());
+		/**/ System.out.println("xyz READ: current id: " +
+		/**/ myDoc.getObjectId("_id").toString());
 		newVisitor.set_id(myDoc.getObjectId("_id").toString());
 		newVisitor.setName(myDoc.getString("name"));
-		// System.out.println("number of documents in the collection : " +
-		// collection.count());
+		/**/ System.out.println("xyz number of documents in the collection : " +
+		/**/ collection.count());
 		return newVisitor;
 	}
 
@@ -216,17 +246,17 @@ public class MongoDbVisitorStore implements VisitorStore {
 	@Override
 	public Visitor persist(Visitor td) {
 		collection = db.getCollection("java-test");
-		// System.out.println("number of documents in the collection : " +
-		// collection.count());
+		/**/ System.out.println("xyz number of documents in the collection : " +
+		/**/ collection.count());
 		Document doc = new Document("name", td.getName()).append("count", 1);
 		collection.insertOne(doc);
 		// TODO: find faster method to getting object id of an inserted object
 		Document myDoc = collection.find(com.mongodb.client.model.Filters.eq("name", td.getName())).first();
-		// System.out.println(myDoc.toJson());
-		// System.out.println(myDoc.getObjectId("_id").toString());
+		/**/ System.out.println(myDoc.toJson());
+		/**/ System.out.println(myDoc.getObjectId("_id").toString());
 		td.set_id(myDoc.getObjectId("_id").toString());
-		// System.out.println("number of documents in the collection : " +
-		// collection.count());
+		/**/ System.out.println("xyz number of documents in the collection : " +
+		/**/ collection.count());
 		return td;
 	}
 
@@ -243,9 +273,9 @@ public class MongoDbVisitorStore implements VisitorStore {
 		// return db.find(Visitor.class, id);
 
 		collection = db.getCollection("java-test");
-		// System.out.println("number of documents in the collection : " +
-		// collection.count());
-		// System.out.println("UPDATE previous _id: " + newVisitor.get_id());
+		/**/ System.out.println("xyz number of documents in the collection : " +
+		/**/ collection.count());
+		/**/ System.out.println("xyz UPDATE previous _id: " + newVisitor.get_id());
 		// TODO: find by _id
 		collection.updateOne(com.mongodb.client.model.Filters.eq("name", newVisitor.getName()),
 				new Document("$set", new Document("name", newVisitor.getName()).append("count", 2)));
@@ -253,11 +283,11 @@ public class MongoDbVisitorStore implements VisitorStore {
 		// TODO: find faster method to getting object id of an inserted object
 		Document myDoc = collection.find(com.mongodb.client.model.Filters.eq("name", newVisitor.getName())).first();
 		// System.out.println(myDoc.toJson());
-		// System.out.println("UPDATE: current id: " +
-		// myDoc.getObjectId("_id").toString());
+		/**/ System.out.println("xyz UPDATE: current id: " +
+		/**/ myDoc.getObjectId("_id").toString());
 		newVisitor.set_id(myDoc.getObjectId("_id").toString());
-		// System.out.println("number of documents in the collection : " +
-		// collection.count());
+		/**/ System.out.println("xyz number of documents in the collection : " +
+		/**/ collection.count());
 		return newVisitor;
 
 	}
@@ -273,15 +303,15 @@ public class MongoDbVisitorStore implements VisitorStore {
 	public void delete(String name) {
 
 		collection = db.getCollection("java-test");
-		// System.out.println("number of documents in the collection : " +
-		// collection.count());
-		// System.out.println("DELETE previous _id: " + name);
+		/**/ System.out.println("xyz number of documents in the collection : " +
+		/**/ collection.count());
+		/**/ System.out.println("xyz DELETE previous _id: " + name);
 		// TODO: find by _id
 		DeleteResult deleteResult = collection.deleteOne(com.mongodb.client.model.Filters.eq("name", name));
-		// System.out.println("number of documents deleted :" +
-		// deleteResult.getDeletedCount());
-		// System.out.println("number of documents in the collection : " +
-		// collection.count());
+		/**/ System.out.println("xyz number of documents deleted :" +
+		/**/ deleteResult.getDeletedCount());
+		/**/ System.out.println("xyz number of documents in the collection : " +
+		/**/ collection.count());
 
 	}
 
@@ -293,7 +323,7 @@ public class MongoDbVisitorStore implements VisitorStore {
 	 */
 	public int count() throws Exception {
 		collection = db.getCollection("java-test");
-		System.out.println("number of documents in the collection : " + collection.count());
+		System.out.println("xyz number of documents in the collection : " + collection.count());
 		int counter = ((Long) collection.count()).intValue();
 		return counter;
 	}
