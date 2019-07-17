@@ -14,7 +14,7 @@
  * limitations under the License.
  *******************************************************************************/
  /* mongodb VCAP credentials management patched by mauro antonio giacomello 2019-07-17 */
- *******************************************************************************/
+ /******************************************************************************/
 package wasdev.sample.store;
 
 import java.io.IOException;
